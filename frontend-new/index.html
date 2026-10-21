@@ -1,13 +1,113 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>frontend-new</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tasks | To-Do Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <h2>TaskFlow</h2>
+            <nav>
+                <a href="#" class="active">📋 My Tasks</a>
+                <a href="#" id="pendingLink">⏳ Pending</a>
+                <a href="#" id="completedLink">✅ Completed</a>
+            </nav>
+            <p class="sidebar-footer">Stay organized. Get things done.</p>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <h1>My Tasks</h1>
+                    <p>Organize your day and achieve your goals.</p>
+                </div>
+                <button id="addTaskBtn" class="primary-btn">+ Create New Task</button>
+            </header>
+
+            <section class="toolbar">
+                <input id="searchInput" type="search" placeholder="Search tasks...">
+
+                <select id="statusFilter" aria-label="Filter by status">
+                    <option value="">All statuses</option>
+                    <option value="Pending">Pending</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
+
+                <select id="priorityFilter" aria-label="Filter by priority">
+                    <option value="">All priorities</option>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+            </section>
+
+            <section class="stats">
+                <article class="stat-card">
+                    <span>Total Tasks</span>
+                    <strong id="totalCount">0</strong>
+                </article>
+                <article class="stat-card">
+                    <span>Pending</span>
+                    <strong id="pendingCount">0</strong>
+                </article>
+                <article class="stat-card">
+                    <span>Completed</span>
+                    <strong id="completedCount">0</strong>
+                </article>
+            </section>
+
+            <section class="task-section">
+                <h2>All Tasks</h2>
+
+                <form id="taskForm" class="task-form hidden">
+                    <h3 id="formHeading">Create a Task</h3>
+
+                    <label for="title">Task Title *</label>
+                    <input id="title" type="text" placeholder="Enter task title" required>
+
+                    <label for="description">Description</label>
+                    <textarea id="description" placeholder="Enter task description"></textarea>
+
+                    <div class="form-row">
+                        <div>
+                            <label for="priority">Priority</label>
+                            <select id="priority">
+                                <option value="Low">Low</option>
+                                <option value="Medium" selected>Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="status">Status</label>
+                            <select id="status">
+                                <option value="Pending">Pending</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <label for="dueDate">Due Date</label>
+                    <input id="dueDate" type="date">
+
+                    <div class="form-actions">
+                        <button type="submit" class="primary-btn">Save Task</button>
+                        <button type="button" id="cancelBtn" class="secondary-btn">Cancel</button>
+                    </div>
+                </form>
+
+                <p id="message" role="status"></p>
+                <div id="taskList" class="task-list"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
+
